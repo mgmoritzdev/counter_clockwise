@@ -12,7 +12,7 @@ int radiusStep = 25;
 float amplitude = 0.025;
 float frequency = 0.3;
 
-float roughness = 1;
+float quality = 1;
 
 float slowPhase = 0;
 float fastPhase = 0;
@@ -49,7 +49,7 @@ void draw() {
 
 	for (int i = innerRadius; i < 250; i += radiusStep) {
 		float phase = i % 2 == 0 ? slowPhase : fastPhase;
-		drawCircle(i, phase, amplitude, frequency, roughness);
+		drawCircle(i, phase, amplitude, frequency, quality);
 	}
 
 	if (frameCount % 100 == 0) {
@@ -99,11 +99,11 @@ PImage getEllipse() {
 	return pg.get();
 }
 
-void drawCircle(int radius, float phase, float amplitude, float frequency, float roughness) {
+void drawCircle(int radius, float phase, float amplitude, float frequency, float quality) {
 	PVector p1 = new PVector();
 	PVector p2 = new PVector();
 	float angle = 0;
-	float step = roughness / radius;
+	float step = 1 / quality / radius;
 
 	float brightness = getBrightness(radius, angle);
 	float noiseFrequency = getCorrecteNoiseFrequency(radius, frequency);
