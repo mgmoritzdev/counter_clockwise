@@ -103,7 +103,6 @@ void drawCircle(int radius, float phase, float amplitude, float frequency, float
 	PVector p1 = new PVector();
 	PVector p2 = new PVector();
 	float angle = 0;
-	float step = 1 / quality / radius;
 
 	float brightness = getBrightness(radius, angle);
 	float noiseFrequency = getCorrecteNoiseFrequency(radius, frequency);
@@ -111,8 +110,8 @@ void drawCircle(int radius, float phase, float amplitude, float frequency, float
 
 	p2 = getNext(center, radius, angle, noise);
 
-	int numSteps = (int) (TWO_PI/step);
-	step = TWO_PI / (numSteps + 1);
+	int numSteps = (int) (TWO_PI * quality * radius);
+	float step = TWO_PI / (numSteps + 1);
 
 	int points = numSteps * 2 + 2;
 	int[] curve = new int[points];
